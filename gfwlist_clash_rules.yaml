@@ -1,5 +1,34 @@
-﻿rules:
+﻿port: 7890           # Local HTTP proxy port
+socks-port: 7891     # Local SOCKS5 proxy port
+allow-lan: true
+mode: rule           # Options: global, rule, direct
+log-level: info
+
+proxies:
+  - name: "Proxy"
+    type: socks5        # Change to socks5 if needed
+    server: 127.0.0.1
+    port: 1080
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  enhanced-mode: fake-ip
+  nameserver:
+    - 114.114.114.114
+    - 1.1.1.1
+  fallback:
+    - tls://dns.google:853
+  use-hosts: true
+  udp: true  # 
+rules:
+  - DOMAIN-SUFFIX,login.live.com,Proxy    
+  - DOMAIN-SUFFIX,login.microsoftonline.com,Proxy     
+  - DOMAIN-SUFFIX,browser.events.data.microsoft.com,Proxy    
+  - DOMAIN-KEYWORD,linkedin,Proxy  
+  - DOMAIN-KEYWORD,postman,Proxy  
   - DOMAIN-KEYWORD,google,Proxy  
+  - DOMAIN-SUFFIX,invade.tw,Proxy     
+  - DOMAIN-SUFFIX,launchdarkly.com,Proxy    
   - DOMAIN-SUFFIX,wplace.live,Proxy  
   - DOMAIN-SUFFIX,blogjav.net,Proxy
   - DOMAIN-SUFFIX,zoominfo.com,Proxy
@@ -7,7 +36,8 @@
   - DOMAIN-SUFFIX,miuipolska.pl,Proxy
   - DOMAIN-SUFFIX,piaotia.com,Proxy
   - DOMAIN-SUFFIX,wunderground.com,Proxy
-  - DOMAIN-SUFFIX,500px.com,Proxy
+  - DOMAIN-SUFFIX,collinsdictionary.com,Proxy
+  - DOMAIN-SUFFIX,500px.org,Proxy
   - DOMAIN-SUFFIX,500px.org,Proxy
   - DOMAIN-SUFFIX,afreecatv.com,Proxy
   - DOMAIN-SUFFIX,agnesb.fr,Proxy
